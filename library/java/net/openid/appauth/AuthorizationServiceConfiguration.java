@@ -62,6 +62,7 @@ public class AuthorizationServiceConfiguration {
     private static final String KEY_AUTHORIZATION_ENDPOINT = "authorizationEndpoint";
     private static final String KEY_TOKEN_ENDPOINT = "tokenEndpoint";
     private static final String KEY_REGISTRATION_ENDPOINT = "registrationEndpoint";
+    private static final String KEY_END_SESSION_ENDPOINT = "endSessionEndpoint";
     private static final String KEY_DISCOVERY_DOC = "discoveryDoc";
 
     /**
@@ -81,6 +82,9 @@ public class AuthorizationServiceConfiguration {
      */
     @Nullable
     public final Uri registrationEndpoint;
+
+    @Nullable
+    public final Uri endSessionEndpoint;
 
 
     /**
@@ -121,9 +125,18 @@ public class AuthorizationServiceConfiguration {
             @NonNull Uri authorizationEndpoint,
             @NonNull Uri tokenEndpoint,
             @Nullable Uri registrationEndpoint) {
+        this(authorizationEndpoint, tokenEndpoint, registrationEndpoint, null);
+    }
+
+    public AuthorizationServiceConfiguration(
+            @NonNull Uri authorizationEndpoint,
+            @NonNull Uri tokenEndpoint,
+            @Nullable Uri registrationEndpoint,
+            @Nullable Uri endSessionEndpoint) {
         this.authorizationEndpoint = checkNotNull(authorizationEndpoint);
         this.tokenEndpoint = checkNotNull(tokenEndpoint);
         this.registrationEndpoint = registrationEndpoint;
+        this.endSessionEndpoint = endSessionEndpoint;
         this.discoveryDoc = null;
     }
 
@@ -140,6 +153,7 @@ public class AuthorizationServiceConfiguration {
         this.authorizationEndpoint = discoveryDoc.getAuthorizationEndpoint();
         this.tokenEndpoint = discoveryDoc.getTokenEndpoint();
         this.registrationEndpoint = discoveryDoc.getRegistrationEndpoint();
+        this.endSessionEndpoint = discoveryDoc.getEndSessionEndpoint();
     }
 
     /**
@@ -152,6 +166,9 @@ public class AuthorizationServiceConfiguration {
         JsonUtil.put(json, KEY_TOKEN_ENDPOINT, tokenEndpoint.toString());
         if (registrationEndpoint != null) {
             JsonUtil.put(json, KEY_REGISTRATION_ENDPOINT, registrationEndpoint.toString());
+        }
+        if (endSessionEndpoint != null) {
+            JsonUtil.put(json, KEY_END_SESSION_ENDPOINT, endSessionEndpoint.toString());
         }
         if (discoveryDoc != null) {
             JsonUtil.put(json, KEY_DISCOVERY_DOC, discoveryDoc.docJson);
@@ -193,7 +210,8 @@ public class AuthorizationServiceConfiguration {
             return new AuthorizationServiceConfiguration(
                     JsonUtil.getUri(json, KEY_AUTHORIZATION_ENDPOINT),
                     JsonUtil.getUri(json, KEY_TOKEN_ENDPOINT),
-                    JsonUtil.getUriIfDefined(json, KEY_REGISTRATION_ENDPOINT));
+                    JsonUtil.getUriIfDefined(json, KEY_REGISTRATION_ENDPOINT),
+                    JsonUtil.getUriIfDefined(json, KEY_END_SESSION_ENDPOINT));
         }
     }
 

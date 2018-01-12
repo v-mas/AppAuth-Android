@@ -76,7 +76,7 @@ public class JsonUtilTest {
 
     @Test(expected = RuntimeException.class)
     public void testPut_JsonException() throws Exception {
-        when(mJson.put(TEST_KEY, TEST_STRING)).thenThrow(new JSONException(null));
+        when(mJson.put(TEST_KEY, TEST_STRING)).thenThrow(new JSONException(null, null));
         JsonUtil.put(mJson, TEST_KEY, TEST_STRING);
     }
 
@@ -88,7 +88,7 @@ public class JsonUtilTest {
 
     @Test(expected = RuntimeException.class)
     public void testPutArray_JsonException() throws Exception {
-        when(mJson.put(TEST_KEY, TEST_ARRAY)).thenThrow(new JSONException(null));
+        when(mJson.put(TEST_KEY, TEST_ARRAY)).thenThrow(new JSONException(null, null));
         JsonUtil.put(mJson, TEST_KEY, TEST_ARRAY);
     }
 
@@ -123,7 +123,7 @@ public class JsonUtilTest {
 
     @Test(expected = RuntimeException.class)
     public void testPutIfNotNullString_JsonException() throws Exception {
-        when(mJson.put(TEST_KEY, TEST_STRING)).thenThrow(new JSONException(null));
+        when(mJson.put(TEST_KEY, TEST_STRING)).thenThrow(new JSONException(null, null));
         JsonUtil.putIfNotNull(mJson, TEST_KEY, TEST_STRING);
     }
 
@@ -152,7 +152,7 @@ public class JsonUtilTest {
 
     @Test(expected = RuntimeException.class)
     public void testPutIfNotNullUri_JsonException() throws Exception {
-        when(mJson.put(TEST_KEY, TEST_URI_STRING)).thenThrow(new JSONException(null));
+        when(mJson.put(TEST_KEY, TEST_URI_STRING)).thenThrow(new JSONException(null, null));
         JsonUtil.putIfNotNull(mJson, TEST_KEY, TEST_URI);
     }
 
@@ -170,7 +170,7 @@ public class JsonUtilTest {
 
     @Test(expected = RuntimeException.class)
     public void testPutIfNotNullLong_JsonException() throws Exception {
-        when(mJson.put(TEST_KEY, TEST_LONG)).thenThrow(new JSONException(null));
+        when(mJson.put(TEST_KEY, TEST_LONG)).thenThrow(new JSONException(null, null));
         JsonUtil.putIfNotNull(mJson, TEST_KEY, TEST_LONG);
     }
 
@@ -188,7 +188,7 @@ public class JsonUtilTest {
 
     @Test(expected = RuntimeException.class)
     public void testPutIfNotNullJson_JsonException() throws Exception {
-        when(mJson.put(TEST_KEY, TEST_JSON)).thenThrow(new JSONException(null));
+        when(mJson.put(TEST_KEY, TEST_JSON)).thenThrow(new JSONException(null, null));
         JsonUtil.putIfNotNull(mJson, TEST_KEY, TEST_JSON);
     }
 

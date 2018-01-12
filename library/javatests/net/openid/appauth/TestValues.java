@@ -34,6 +34,8 @@ class TestValues {
             Uri.parse("https://testidp.example.com/token");
     public static final Uri TEST_IDP_REGISTRATION_ENDPOINT =
             Uri.parse("https://testidp.example.com/token");
+    public static final Uri TEST_IDP_END_SESSION_ENDPOINT =
+            Uri.parse("https://testidp.example.com/logout");
 
     public static final String TEST_CODE_VERIFIER = "0123456789_0123456789_0123456789_0123456789";
     public static final String TEST_AUTH_CODE = "zxcvbnmjk";
@@ -51,7 +53,8 @@ class TestValues {
         return new AuthorizationServiceConfiguration(
                 TEST_IDP_AUTH_ENDPOINT,
                 TEST_IDP_TOKEN_ENDPOINT,
-                TEST_IDP_REGISTRATION_ENDPOINT);
+                TEST_IDP_REGISTRATION_ENDPOINT,
+                TEST_IDP_END_SESSION_ENDPOINT);
     }
 
     public static AuthorizationRequest.Builder getMinimalAuthRequestBuilder(String responseType) {

@@ -55,6 +55,9 @@ public class AuthorizationServiceDiscovery {
     static final UriField USERINFO_ENDPOINT = uri("userinfo_endpoint");
 
     @VisibleForTesting
+    static final UriField END_SESSION_ENDPOINT = uri("end_session_endpoint");
+
+    @VisibleForTesting
     static final UriField JWKS_URI = uri("jwks_uri");
 
     @VisibleForTesting
@@ -265,6 +268,14 @@ public class AuthorizationServiceDiscovery {
     @Nullable
     public Uri getUserinfoEndpoint() {
         return get(USERINFO_ENDPOINT);
+    }
+
+    /**
+     * The OpenID Connect EndSession endpoint URI.
+     */
+    @Nullable
+    public Uri getEndSessionEndpoint() {
+        return get(END_SESSION_ENDPOINT);
     }
 
     /**

@@ -37,6 +37,7 @@ public class AuthorizationServiceDiscoveryTest {
     private static final String TEST_AUTHORIZATION_ENDPOINT = "http://test.openid.com/o/oauth/auth";
     private static final String TEST_TOKEN_ENDPOINT = "http://test.openid.com/o/oauth/token";
     private static final String TEST_USERINFO_ENDPOINT = "http://test.openid.com/o/oauth/userinfo";
+    private static final String TEST_END_SESSION_ENDPOINT = "http://test.openid.com/o/oauth/logout";
     private static final String TEST_JWKS_URI = "http://test.openid.com/o/oauth/jwks";
     private static final List<String> TEST_RESPONSE_TYPE_SUPPORTED = Arrays.asList("code", "token");
     private static final List<String> TEST_SUBJECT_TYPES_SUPPORTED = Arrays.asList("public");
@@ -51,6 +52,7 @@ public class AuthorizationServiceDiscoveryTest {
             + " \"authorization_endpoint\": \"" + TEST_AUTHORIZATION_ENDPOINT + "\",\n"
             + " \"token_endpoint\": \"" + TEST_TOKEN_ENDPOINT + "\",\n"
             + " \"userinfo_endpoint\": \"" + TEST_USERINFO_ENDPOINT + "\",\n"
+            + " \"end_session_endpoint\": \"" + TEST_END_SESSION_ENDPOINT + "\",\n"
             + " \"jwks_uri\": \"" + TEST_JWKS_URI + "\",\n"
             + " \"response_types_supported\": " + toJson(TEST_RESPONSE_TYPE_SUPPORTED) + ",\n"
             + " \"subject_types_supported\": " + toJson(TEST_SUBJECT_TYPES_SUPPORTED) + ",\n"
@@ -185,6 +187,11 @@ public class AuthorizationServiceDiscoveryTest {
     @Test
     public void testGetUserinfoEndpoint() {
         assertEquals(TEST_USERINFO_ENDPOINT, mDiscovery.getUserinfoEndpoint().toString());
+    }
+
+    @Test
+    public void testGetEndSessionEndpoint() {
+        assertEquals(TEST_END_SESSION_ENDPOINT, mDiscovery.getEndSessionEndpoint().toString());
     }
 
     @Test
