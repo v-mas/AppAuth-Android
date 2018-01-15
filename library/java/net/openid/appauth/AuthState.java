@@ -427,6 +427,33 @@ public class AuthState {
     }
 
     /**
+     * Updates the authorization state based on a new end session response.
+     */
+    public void update(
+            @Nullable EndSessionResponse endSessionResponse,
+            @Nullable AuthorizationException authException) {
+        checkArgument(endSessionResponse != null ^ authException != null,
+                      "exactly one of endSessionResponse or authException should be non-null");
+
+        if (authException != null) {
+            if (authException.type == AuthorizationException.TYPE_OAUTH_TOKEN_ERROR) {
+                mAuthorizationException = authException;
+            }
+            return;
+        }
+
+        // Note that we do not discard the configuration; this is likely still applicable.
+        mConfig = getAuthorizationServiceConfiguration();
+
+        mRefreshToken = null;
+        mScope = null;
+        mLastAuthorizationResponse = null;
+        mLastTokenResponse = null;
+        mLastRegistrationResponse = null;
+        mAuthorizationException = null;
+    }
+
+    /**
      * Updates the authorization state based on a new client registration response.
      */
     public void update(@Nullable RegistrationResponse regResponse) {
