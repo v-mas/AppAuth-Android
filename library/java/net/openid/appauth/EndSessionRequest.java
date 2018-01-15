@@ -51,6 +51,8 @@ public class EndSessionRequest {
     @NonNull
     private final Uri redirectUri;
 
+    //TODO add builder that throws exception if end session endpoint is not supported on server
+
     public EndSessionRequest(
             @NonNull AuthorizationServiceConfiguration configuration,
             @NonNull Uri redirectUri) {

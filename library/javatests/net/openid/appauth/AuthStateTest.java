@@ -240,6 +240,8 @@ public class AuthStateTest {
                 AuthorizationException.AuthorizationRequestErrors.ACCESS_DENIED);
     }
 
+    //TODO testUpdate_withEndSessionResponse
+
     @Test
     public void testGetAccessToken_fromAuthResponse() {
         AuthorizationRequest authReq = getMinimalAuthRequestBuilder("code token")
